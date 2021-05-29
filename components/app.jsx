@@ -4,6 +4,8 @@ import Grid from './grid.jsx';
 
 export default () => {
   const [grid,setGrid] = useState(gridThing);
+  const [isChanging,setIsChanging] = useState(false);
+  let intervalId;
   // console.log(grid)
   const handleChange = (posToFlip) => {
     if (!posToFlip.length) {
@@ -74,9 +76,24 @@ export default () => {
     };
   },[grid])
 
+  const startStop = () => {
+    if (isChanging) {
+      clearInterval(intervalId)
+      setIsChanging(false)
+    } else {
+      intervalId = setInterval(() => {
+        // console.log(grid)
+        console.log('intervalling')
+        handleChange(getNeighbors(grid))
+      },100)
+      setIsChanging(true)
+    }
+  }
+
   return(
     <div className="container">
       <h1>The Game of Life</h1>
+      <button onClick={startStop}>{isChanging ? "Stop" : "Start"}</button>
       <div className="grid">
         <Grid grid={grid} />
       </div>
