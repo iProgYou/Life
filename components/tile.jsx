@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-const Tile = ({ pos,char }) => {
+const Tile = ({ handleChange,char }) => {
 
   const tileClassNames = classNames({
     'tile': true,
@@ -10,8 +10,15 @@ const Tile = ({ pos,char }) => {
     'border': char === '_'
   
   })
+
+  let leDiv = char !== '_' ? 
+    <div onClick={handleChange} className={tileClassNames} ></div> :
+    <div className={tileClassNames} ></div> 
+
   return(
-    <div className={tileClassNames} ></div>
+    <>
+      {leDiv}
+    </>
   );
 };
 
