@@ -5,8 +5,8 @@ import Grid from './grid.jsx';
 export default () => {
   const [grid,setGrid] = useState(gridThing);
   const [isChanging,setIsChanging] = useState(false);
-  let intervalId;
-  // console.log(grid)
+  const [intId,setIntId] = useState(null);
+
   const handleChange = (posToFlip) => {
     if (!posToFlip.length) {
       return null;
@@ -65,37 +65,28 @@ export default () => {
     return neighbors;
   }
 
-  useEffect(() => {
-    let intervalId = setInterval(() => {
-      // console.log(grid)
-      console.log('intervalling')
-      handleChange(getNeighbors(grid))
-    },100)
-    return () => {
-      clearInterval(intervalId);
-    };
-  },[grid])
-
   const startStop = () => {
     if (isChanging) {
-      clearInterval(intervalId)
+      clearInterval(intId)
+      setIntId(null);
       setIsChanging(false)
     } else {
-      intervalId = setInterval(() => {
+      let id = setInterval(() => {
         // console.log(grid)
         console.log('intervalling')
         handleChange(getNeighbors(grid))
       },100)
       setIsChanging(true)
+      setIntId(id)
     }
   }
 
   return(
     <div className="container">
       <h1>The Game of Life</h1>
-      <button onClick={startStop}>{isChanging ? "Stop" : "Start"}</button>
+      <button className="start-button" onClick={startStop}>{isChanging ? "Stop" : "Start"}</button>
       <div className="grid">
-        <Grid grid={grid} />
+        <Grid grid={grid}  handleChange={handleChange}/>
       </div>
     </div>
   )
