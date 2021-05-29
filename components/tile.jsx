@@ -11,8 +11,15 @@ const Tile = ({ handleChange,char }) => {
   
   })
 
+  const handleHover = (e) => {
+    console.log(e)
+    if (e.buttons === 1) {
+      handleChange()
+    }
+  }
+
   let leDiv = char !== '_' ? 
-    <div onClick={handleChange} className={tileClassNames} ></div> :
+    <div onClick={handleChange} onMouseOver={handleHover} className={tileClassNames} ></div> :
     <div className={tileClassNames} ></div> 
 
   return(
