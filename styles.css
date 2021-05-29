@@ -20,3 +20,13 @@
 .border {
     background-color: blue;
 }
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.grid {
+    
+}

@@ -75,8 +75,11 @@ export default () => {
   },[grid])
 
   return(
-    <>
-      <Grid grid={grid} />
-    </>
+    <div className="container">
+      <h1>The Game of Life</h1>
+      <div className="grid">
+        <Grid grid={grid} />
+      </div>
+    </div>
   )
 }
