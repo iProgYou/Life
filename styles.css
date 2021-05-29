@@ -1,0 +1,22 @@
+.row {
+    display: flex;
+    width: 100%;
+}
+
+.tile {
+    margin: 0px;
+    padding: 5px;
+    border: 2px solid black;
+}
+
+.alive {
+    background-color: black;
+}
+
+.dead {
+    background-color: white;
+}
+
+.border {
+    background-color: blue;
+}
